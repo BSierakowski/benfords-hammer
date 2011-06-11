@@ -27,7 +27,9 @@ for number in data:
     if re.match("^.", number) == 1:
         number_count[1] += 1
         total_count += 1 
-    elif number == '2':
+
+# Note that 2-9 are relics, the previous implementation was to .list() everything, then count individual numbers. But, Benfords law applies only to the First number, so 101 counts a one '1', not two.
+    elif number == '2':  
         number_count[2] += 1 
         total_count += 1 
     elif number == '3':
