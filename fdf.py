@@ -30,45 +30,18 @@ print " "
 
 # Declaring an array for later use
 datalist = []
+  
+# Here's where the magic happens, now that each word has been split we run two for loops, one to 
+# break out each word, and then a second (inception for loops) to cycle 1-9, seeing if the first 
+# charater (number[0]) is a 1-9, if so increment the number counter array of which ever number 
 
-# For loop to run through the previously split data and list it, so that 
-# ['100', '100', '200'] gives us [['1','0','0'],['1','0','0'],['2','0','0']]
-for i in data:
-    datalist.append(list(i))
-    
-# Here's where the magic happens, now that each word has been split and each letter of the split word has been
-# listed, we run a for loop through our listed array, and look at the first element of the array 'number[0]'
-# and see if its a 1, 2, 3, etc. This isolates the first charater of every word, and increments counts as needed.
-for number in datalist:
-    if number[0] == '1':
-        number_count[1] += 1
-        total_count += 1 
-    elif number[0] == '2':
-        number_count[2] += 1 
-        total_count += 1 
-    elif number[0] == '3':
-        number_count[3] += 1 
-        total_count += 1 
-    elif number[0] == '4':
-        number_count[4] += 1 
-        total_count += 1 
-    elif number[0] == '5':
-        number_count[5] += 1 
-        total_count += 1 
-    elif number[0] == '6':
-        number_count[6] += 1 
-        total_count += 1 
-    elif number[0] == '7':
-        number_count[7] += 1
-        total_count += 1 
-    elif number[0] == '8':
-        number_count[8] += 1 
-        total_count += 1 
-    elif number[0] == '9':
-        number_count[9] += 1  
-        total_count += 1 
-    else:
-        non_number += 1
+for number in data:
+    for n in '123456789':
+        if number[0] == n:
+            number_count[int(n)] += 1
+            total_count += 1
+            
+non_number = len(data) - total_count
 
 # The mysterious b_count! What does it do?! I stated above that the for loop was the magic, A MERE DIVERSION!!
 # b_count uses benford's law to look at the total number of numbers, and then create a value in the array to represent
@@ -96,7 +69,7 @@ print "You had %d 6's (expecting: %d, difference: %d)" % (number_count[6], b_cou
 print "You had %d 7's (expecting: %d, difference: %d)" % (number_count[7], b_count[7], number_diff[7])
 print "You had %d 8's (expecting: %d, difference: %d)" % (number_count[8], b_count[8], number_diff[8])
 print "You had %d 9's (expecting: %d, difference: %d)" % (number_count[9], b_count[9], number_diff[9])
-print "You had %d characters that weren't numbers." % non_number
+print "You had %d strings that weren't numbers. (probably words)" % non_number
 print " "
 print "Total difference: %d" % total_diff
 
