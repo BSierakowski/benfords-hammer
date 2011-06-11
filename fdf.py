@@ -1,5 +1,4 @@
 from sys import argv
-import re
 
 scriptname, filename = argv
 
@@ -8,12 +7,10 @@ number_count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 total_count = 0
 non_number = 0
 
-
 print ""
 print "Opening: ", filename
 print "--------------------"
 datastore = open(filename, 'r').read()
-
 data = datastore.split()
 
 print " "
@@ -21,34 +18,39 @@ print "Enhancing..."
 print "------------"
 print " "
 
+datalist = []
+
+for i in data:
+    datalist.append(list(i))
+
 # if the first charater of the contents of the array slot is = 1, then...
 
-for number in data:
-    if re.match("^.", number) == 1:
+for number in datalist:
+    if number[0] == '1':
         number_count[1] += 1
         total_count += 1 
-    elif number == '2':
+    elif number[0] == '2':
         number_count[2] += 1 
         total_count += 1 
-    elif number == '3':
+    elif number[0] == '3':
         number_count[3] += 1 
         total_count += 1 
-    elif number == '4':
+    elif number[0] == '4':
         number_count[4] += 1 
         total_count += 1 
-    elif number == '5':
+    elif number[0] == '5':
         number_count[5] += 1 
         total_count += 1 
-    elif number == '6':
+    elif number[0] == '6':
         number_count[6] += 1 
         total_count += 1 
-    elif number == '7':
+    elif number[0] == '7':
         number_count[7] += 1
         total_count += 1 
-    elif number == '8':
+    elif number[0] == '8':
         number_count[8] += 1 
         total_count += 1 
-    elif number == '9':
+    elif number[0] == '9':
         number_count[9] += 1  
         total_count += 1 
     else:
@@ -76,6 +78,9 @@ print "You had %d characters that weren't numbers." % non_number
 print " "
 print "Total difference: %d" % total_diff
 
+if total_count == 0:
+    total_count += 1
+
 percent_diff = (total_diff / total_count) * 100
 
 print "Percent difference: %d" % percent_diff
@@ -86,9 +91,16 @@ print "----------"
 print " "
 if percent_diff <= 10:
     print "Your total variation from our projected values was less than or equal to 10%, this document is PROBABLY LEGIT."
+    print "(meaning 'legitly random.')"
+    print "  "
 elif percent_diff > 10 and percent_diff <= 30: 
     print "Your total variation from our projected values was greater than 10%, but less than our equal to 30, this document is QUESTIONABLE."
+    print "(meaning likely to have had systematic or human intervention.)"
+    print "  "
 elif percent_diff > 30:
     print "Your total variation from our projected values was greater than 30%, this document is FALSIFIED!"
+    print "(meaning not random, changed by a human or other logic based system.)"
+    print "  "
 else:
     print "It appears we've got a non numeric answer from our calculations... our bad."
+    print "  "
