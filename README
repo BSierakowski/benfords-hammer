@@ -1,0 +1,9 @@
+This app uses Benfords law to analyze all the numbers within a document to see if they fall within a pattern deemed to be regular.
+
+Think that there's a 10% chance that a number will start with a 1, a 10% chance that a number will start with a 2, etc?
+
+NAY! There's a logarithmic curve, numbers starting with 1's are much more frequent than numbers starting with 2's, and if this pattern isn't followed, we know that there's been some tom-foolery afoot.
+
+If you're curious to read more, the Docs folder has a great white paper on Benfords law, along with some test data samples to run it against, including a fabricated 'realdata.txt' and 'fakedata.txt', along with a randomly generated system log. Will the log fall within Benfords law?!
+
+Syntax: python fdf.py FILENAME.txt 
